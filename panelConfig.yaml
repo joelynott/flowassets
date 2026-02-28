@@ -6,6 +6,9 @@ cellLabelDecimalPoints: 0
 datapoint: "lastNotNull"
 gradientMode: "none"
 
+dataRefTransform:
+  namespaced: false
+
 cells:
 
   link_1_2:

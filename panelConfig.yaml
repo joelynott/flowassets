@@ -1,7 +1,7 @@
 # Configuración para Flow Panel con IDs específicos de draw.io
 mappings:
   # Configuración para el Router 1
-  - id: "cell-tyu3OHM_ATTpBOaRU60X-4"
+  - id: "cell-router_1"
     field: "status_router_1"   # Asegúrate de que tu query devuelva este nombre de campo
     type: "fill"               # Cambia el color de fondo del icono
     thresholds:
@@ -13,7 +13,7 @@ mappings:
         value: 2               # Estado Crítico
 
   # Configuración para el Router 2
-  - id: "cell-tyu3OHM_ATTpBOaRU60X-5"
+  - id: "cell-router_1"
     field: "status_router_2"
     type: "fill"
     thresholds:
@@ -25,7 +25,7 @@ mappings:
         value: 2
 
   # Configuración para el Enlace (la línea que los une)
-  - id: "cell-tyu3OHM_ATTpBOaRU60X-6"
+  - id: "cell-link_1_2"
     field: "status_enlace"
     type: "stroke"             # "stroke" cambia el color de la línea
     thresholds:

@@ -3,7 +3,7 @@
 cellIdPreamble: "cell-"
 cellIdExtender: "@flowrpt"
 cellLabelDecimalPoints: 0
-datapoint: "last"
+datapoint: "lastNotNull"
 gradientMode: "none"
 
 cells:
@@ -13,50 +13,48 @@ cells:
     fillColor:
       dataRef: "status_enlace"
       gradientMode: "none"
-      thresholdPatterns:
-        linkStatus:
-          - {color: "green",  pattern: '^0$'}
-          - {color: "yellow", pattern: '^1$'}
-          - {color: "red",    pattern: '^2$'}
+      thresholds:
+        - {color: "green",  level: 0}
+        - {color: "yellow", level: 1}
+        - {color: "red",    level: 2}
     strokeColor:
       dataRef: "status_enlace"
       gradientMode: "none"
-      thresholdPatterns:
-        linkStatus:
-          - {color: "green",  pattern: '^0$'}
-          - {color: "yellow", pattern: '^1$'}
-          - {color: "red",    pattern: '^2$'}
+      thresholds:
+        - {color: "green",  level: 0}
+        - {color: "yellow", level: 1}
+        - {color: "red",    level: 2}
 
   router_1:
     dataRef: "status_router_1"
     fillColor:
       dataRef: "status_router_1"
       gradientMode: "none"
-      thresholdPatterns:
-        router1Status:
-          - {color: "yellow", pattern: '^1$'}
-          - {color: "red",    pattern: '^[2-9][0-9]*$'}
+      thresholds:
+        - {color: "default", level: 0}
+        - {color: "yellow",  level: 1}
+        - {color: "red",     level: 2}
     strokeColor:
       dataRef: "status_router_1"
       gradientMode: "none"
-      thresholdPatterns:
-        router1Status:
-          - {color: "yellow", pattern: '^1$'}
-          - {color: "red",    pattern: '^[2-9][0-9]*$'}
+      thresholds:
+        - {color: "default", level: 0}
+        - {color: "yellow",  level: 1}
+        - {color: "red",     level: 2}
 
   router_2:
     dataRef: "status_router_2"
     fillColor:
       dataRef: "status_router_2"
       gradientMode: "none"
-      thresholdPatterns:
-        router2Status:
-          - {color: "yellow", pattern: '^1$'}
-          - {color: "red",    pattern: '^[2-9][0-9]*$'}
+      thresholds:
+        - {color: "default", level: 0}
+        - {color: "yellow",  level: 1}
+        - {color: "red",     level: 2}
     strokeColor:
       dataRef: "status_router_2"
       gradientMode: "none"
-      thresholdPatterns:
-        router2Status:
-          - {color: "yellow", pattern: '^1$'}
-          - {color: "red",    pattern: '^[2-9][0-9]*$'}
+      thresholds:
+        - {color: "default", level: 0}
+        - {color: "yellow",  level: 1}
+        - {color: "red",     level: 2}

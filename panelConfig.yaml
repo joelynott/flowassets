@@ -7,21 +7,21 @@ datapoint: "lastNotNull"
 gradientMode: "none"
 
 dataRefTransform:
-  namespaced: false
+  namespaced: true
 
 cells:
 
   link_1_2:
-    dataRef: "status_enlace"
+    dataRef: "A.status_enlace"
     fillColor:
-      dataRef: "status_enlace"
+      dataRef: "A.status_enlace"
       gradientMode: "none"
       thresholds:
         - {color: "green",  level: 0}
         - {color: "yellow", level: 1}
         - {color: "red",    level: 2}
     strokeColor:
-      dataRef: "status_enlace"
+      dataRef: "A.status_enlace"
       gradientMode: "none"
       thresholds:
         - {color: "green",  level: 0}
@@ -29,16 +29,16 @@ cells:
         - {color: "red",    level: 2}
 
   router_1:
-    dataRef: "status_router_1"
+    dataRef: "A.status_router_1"
     fillColor:
-      dataRef: "status_router_1"
+      dataRef: "A.status_router_1"
       gradientMode: "none"
       thresholds:
         - {color: "default", level: 0}
         - {color: "yellow",  level: 1}
         - {color: "red",     level: 2}
     strokeColor:
-      dataRef: "status_router_1"
+      dataRef: "A.status_router_1"
       gradientMode: "none"
       thresholds:
         - {color: "default", level: 0}
@@ -46,16 +46,16 @@ cells:
         - {color: "red",     level: 2}
 
   router_2:
-    dataRef: "status_router_2"
+    dataRef: "A.status_router_2"
     fillColor:
-      dataRef: "status_router_2"
+      dataRef: "A.status_router_2"
       gradientMode: "none"
       thresholds:
         - {color: "default", level: 0}
         - {color: "yellow",  level: 1}
         - {color: "red",     level: 2}
     strokeColor:
-      dataRef: "status_router_2"
+      dataRef: "A.status_router_2"
       gradientMode: "none"
       thresholds:
         - {color: "default", level: 0}

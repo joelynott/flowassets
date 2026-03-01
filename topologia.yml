@@ -130,11 +130,3 @@ cells:
         - {color: "yellow", pattern: "error"}
         - {color: "gray",   pattern: "unknown"}
 
-    fillColor:
-      dataRef: "A.link_r2_sw1.status"
-      gradientMode: "none"
-      thresholdPatterns:
-        - {color: "green",  pattern: "up"}
-        - {color: "red",    pattern: "down"}
-        - {color: "yellow", pattern: "error"}
-        - {color: "gray",   pattern: "unknown"}

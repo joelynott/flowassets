@@ -1,0 +1,148 @@
+---
+
+# =============================================================================
+# Flow Panel - panelConfig.yaml
+# Topología de red: Chiletur
+#
+# Datasource: Infinity (JSON tabular)
+# Query name: A
+# Campo clave: "name" -> genera dataRefs como A.<name>.status
+#
+# Mapeo SVG id -> JSON name (todos coinciden):
+#   router_1    -> A.router_1.status
+#   router_2    -> A.router_2.status
+#   link_r1_r2  -> A.link_r1_r2.status
+#   switch_1    -> A.switch_1.status
+#   link_r2_sw1 -> A.link_r2_sw1.status
+#
+# Estados de color:
+#   Routers/Switches: up=sin cambio | down=rojo | error=amarillo | unknown=gris
+#   Enlaces:          up=verde      | down=rojo | error=amarillo | unknown=gris
+# =============================================================================
+
+# Prefijo que draw.io añade a los IDs del SVG exportado
+cellIdPreamble: "cell-"
+
+# Seleccion de datapoint para datos tabulares
+datapoint: "last"
+
+# Transformacion del datasource Infinity (JSON tabular multifila).
+# namespaced=true + tabularKeyColumn="name" genera:
+#   A.router_1.status, A.link_r1_r2.status, etc.
+dataRefTransform:
+  namespaced: true
+  queries:
+    A:
+      tabularKeyColumn: "name"
+
+# Sin gradiente: colores discretos por estado (texto)
+gradientMode: "none"
+
+# ------------------------------------------------------------------------------
+# Anclas YAML: thresholdPatterns reutilizables
+#
+# Routers y switches: "up" no tiene patron -> sin match -> sin cambio de color
+_routerPatterns: &router-patterns
+  - {color: "red",    pattern: "down"}
+  - {color: "yellow", pattern: "error"}
+  - {color: "gray",   pattern: "unknown"}
+
+# Enlaces: todos los estados tienen color explicito
+_linkPatterns: &link-patterns
+  - {color: "green",  pattern: "up"}
+  - {color: "red",    pattern: "down"}
+  - {color: "yellow", pattern: "error"}
+  - {color: "gray",   pattern: "unknown"}
+
+# ------------------------------------------------------------------------------
+cells:
+
+  # ============================================================================
+  # ROUTER 1  |  SVG: cell-router_1  |  JSON name: router_1
+  # ============================================================================
+  router_1:
+    dataRef: "A.router_1.status"
+
+    fillColor:
+      dataRef: "A.router_1.status"
+      gradientMode: "none"
+      thresholdPatterns:
+        <<: *router-patterns
+
+    strokeColor:
+      dataRef: "A.router_1.status"
+      gradientMode: "none"
+      thresholdPatterns:
+        <<: *router-patterns
+
+  # ============================================================================
+  # ROUTER 2  |  SVG: cell-router_2  |  JSON name: router_2
+  # ============================================================================
+  router_2:
+    dataRef: "A.router_2.status"
+
+    fillColor:
+      dataRef: "A.router_2.status"
+      gradientMode: "none"
+      thresholdPatterns:
+        <<: *router-patterns
+
+    strokeColor:
+      dataRef: "A.router_2.status"
+      gradientMode: "none"
+      thresholdPatterns:
+        <<: *router-patterns
+
+  # ============================================================================
+  # SWITCH 1  |  SVG: cell-switch_1  |  JSON name: switch_1
+  # ============================================================================
+  switch_1:
+    dataRef: "A.switch_1.status"
+
+    fillColor:
+      dataRef: "A.switch_1.status"
+      gradientMode: "none"
+      thresholdPatterns:
+        <<: *router-patterns
+
+    strokeColor:
+      dataRef: "A.switch_1.status"
+      gradientMode: "none"
+      thresholdPatterns:
+        <<: *router-patterns
+
+  # ============================================================================
+  # ENLACE R1-R2  |  SVG: cell-link_r1_r2  |  JSON name: link_r1_r2
+  # ============================================================================
+  link_r1_r2:
+    dataRef: "A.link_r1_r2.status"
+
+    strokeColor:
+      dataRef: "A.link_r1_r2.status"
+      gradientMode: "none"
+      thresholdPatterns:
+        <<: *link-patterns
+
+    fillColor:
+      dataRef: "A.link_r1_r2.status"
+      gradientMode: "none"
+      thresholdPatterns:
+        <<: *link-patterns
+
+  # ============================================================================
+  # ENLACE R2-SW1  |  SVG: cell-link_r2_sw1  |  JSON name: link_r2_sw1
+  # ============================================================================
+  link_r2_sw1:
+    dataRef: "A.link_r2_sw1.status"
+
+    strokeColor:
+      dataRef: "A.link_r2_sw1.status"
+      gradientMode: "none"
+      thresholdPatterns:
+        <<: *link-patterns
+
+    fillColor:
+      dataRef: "A.link_r2_sw1.status"
+      gradientMode: "none"
+      thresholdPatterns:
+        <<: *link-patterns

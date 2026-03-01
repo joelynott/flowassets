@@ -4,11 +4,19 @@
 # Flow Panel - panelConfig.yaml
 # Topología de red: Chiletur
 #
-# Datasource: Infinity (JSON tabular)
-# Query name: A
-# Campo clave: "name" -> genera dataRefs como A.<n>.status
+# Estrategia de color:
 #
-# Estados de color:
+#   Dispositivos (router/switch):
+#     - fillColor + fillColorElementFilter {name: 'path', position: '1'}
+#       -> colorea SOLO el primer path (cuerpo del ícono), preservando detalles
+#     - labelColor -> colorea el texto del label
+#     - strokeColor -> OMITIDO (el stroke blanco del SVG ya forma parte del diseño)
+#
+#   Enlaces:
+#     - strokeColor ÚNICAMENTE -> colorea la línea y las flechas
+#     - fillColor -> OMITIDO para no interferir con las puntas de flecha
+#
+# Estados:
 #   Routers/Switches: up=sin cambio | down=rojo | error=amarillo | unknown=gris
 #   Enlaces:          up=verde      | down=rojo | error=amarillo | unknown=gris
 # =============================================================================
@@ -39,7 +47,12 @@ cells:
         - {color: "yellow", pattern: "error"}
         - {color: "gray",   pattern: "unknown"}
 
-    strokeColor:
+    # Apunta solo al primer path del ícono (cuerpo del router)
+    # El segundo path contiene las flechas blancas internas -> no se toca
+    fillColorElementFilter:
+      - {name: "path", position: "1"}
+
+    labelColor:
       dataRef: "A.router_1.status"
       gradientMode: "none"
       thresholdPatterns:
@@ -61,7 +74,10 @@ cells:
         - {color: "yellow", pattern: "error"}
         - {color: "gray",   pattern: "unknown"}
 
-    strokeColor:
+    fillColorElementFilter:
+      - {name: "path", position: "1"}
+
+    labelColor:
       dataRef: "A.router_2.status"
       gradientMode: "none"
       thresholdPatterns:
@@ -71,6 +87,7 @@ cells:
 
   # ============================================================================
   # SWITCH 1
+  # El switch tiene 3 paths: posicion 1 = cuerpo principal (trapecio)
   # ============================================================================
   switch_1:
     dataRef: "A.switch_1.status"
@@ -83,7 +100,10 @@ cells:
         - {color: "yellow", pattern: "error"}
         - {color: "gray",   pattern: "unknown"}
 
-    strokeColor:
+    fillColorElementFilter:
+      - {name: "path", position: "1"}
+
+    labelColor:
       dataRef: "A.switch_1.status"
       gradientMode: "none"
       thresholdPatterns:
@@ -92,7 +112,7 @@ cells:
         - {color: "gray",   pattern: "unknown"}
 
   # ============================================================================
-  # ENLACE R1-R2
+  # ENLACE R1-R2  -> solo strokeColor
   # ============================================================================
   link_r1_r2:
     dataRef: "A.link_r1_r2.status"
@@ -106,17 +126,8 @@ cells:
         - {color: "yellow", pattern: "error"}
         - {color: "gray",   pattern: "unknown"}
 
-    fillColor:
-      dataRef: "A.link_r1_r2.status"
-      gradientMode: "none"
-      thresholdPatterns:
-        - {color: "green",  pattern: "up"}
-        - {color: "red",    pattern: "down"}
-        - {color: "yellow", pattern: "error"}
-        - {color: "gray",   pattern: "unknown"}
-
   # ============================================================================
-  # ENLACE R2-SW1
+  # ENLACE R2-SW1  -> solo strokeColor
   # ============================================================================
   link_r2_sw1:
     dataRef: "A.link_r2_sw1.status"
@@ -129,4 +140,3 @@ cells:
         - {color: "red",    pattern: "down"}
         - {color: "yellow", pattern: "error"}
         - {color: "gray",   pattern: "unknown"}
-

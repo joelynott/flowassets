@@ -6,59 +6,27 @@
 #
 # Datasource: Infinity (JSON tabular)
 # Query name: A
-# Campo clave: "name" -> genera dataRefs como A.<name>.status
-#
-# Mapeo SVG id -> JSON name (todos coinciden):
-#   router_1    -> A.router_1.status
-#   router_2    -> A.router_2.status
-#   link_r1_r2  -> A.link_r1_r2.status
-#   switch_1    -> A.switch_1.status
-#   link_r2_sw1 -> A.link_r2_sw1.status
+# Campo clave: "name" -> genera dataRefs como A.<n>.status
 #
 # Estados de color:
 #   Routers/Switches: up=sin cambio | down=rojo | error=amarillo | unknown=gris
 #   Enlaces:          up=verde      | down=rojo | error=amarillo | unknown=gris
 # =============================================================================
 
-# Prefijo que draw.io añade a los IDs del SVG exportado
 cellIdPreamble: "cell-"
-
-# Seleccion de datapoint para datos tabulares
 datapoint: "last"
+gradientMode: "none"
 
-# Transformacion del datasource Infinity (JSON tabular multifila).
-# namespaced=true + tabularKeyColumn="name" genera:
-#   A.router_1.status, A.link_r1_r2.status, etc.
 dataRefTransform:
   namespaced: true
   queries:
     A:
       tabularKeyColumn: "name"
 
-# Sin gradiente: colores discretos por estado (texto)
-gradientMode: "none"
-
-# ------------------------------------------------------------------------------
-# Anclas YAML: thresholdPatterns reutilizables
-#
-# Routers y switches: "up" no tiene patron -> sin match -> sin cambio de color
-_routerPatterns: &router-patterns
-  - {color: "red",    pattern: "down"}
-  - {color: "yellow", pattern: "error"}
-  - {color: "gray",   pattern: "unknown"}
-
-# Enlaces: todos los estados tienen color explicito
-_linkPatterns: &link-patterns
-  - {color: "green",  pattern: "up"}
-  - {color: "red",    pattern: "down"}
-  - {color: "yellow", pattern: "error"}
-  - {color: "gray",   pattern: "unknown"}
-
-# ------------------------------------------------------------------------------
 cells:
 
   # ============================================================================
-  # ROUTER 1  |  SVG: cell-router_1  |  JSON name: router_1
+  # ROUTER 1
   # ============================================================================
   router_1:
     dataRef: "A.router_1.status"
@@ -67,16 +35,20 @@ cells:
       dataRef: "A.router_1.status"
       gradientMode: "none"
       thresholdPatterns:
-        <<: *router-patterns
+        - {color: "red",    pattern: "down"}
+        - {color: "yellow", pattern: "error"}
+        - {color: "gray",   pattern: "unknown"}
 
     strokeColor:
       dataRef: "A.router_1.status"
       gradientMode: "none"
       thresholdPatterns:
-        <<: *router-patterns
+        - {color: "red",    pattern: "down"}
+        - {color: "yellow", pattern: "error"}
+        - {color: "gray",   pattern: "unknown"}
 
   # ============================================================================
-  # ROUTER 2  |  SVG: cell-router_2  |  JSON name: router_2
+  # ROUTER 2
   # ============================================================================
   router_2:
     dataRef: "A.router_2.status"
@@ -85,16 +57,20 @@ cells:
       dataRef: "A.router_2.status"
       gradientMode: "none"
       thresholdPatterns:
-        <<: *router-patterns
+        - {color: "red",    pattern: "down"}
+        - {color: "yellow", pattern: "error"}
+        - {color: "gray",   pattern: "unknown"}
 
     strokeColor:
       dataRef: "A.router_2.status"
       gradientMode: "none"
       thresholdPatterns:
-        <<: *router-patterns
+        - {color: "red",    pattern: "down"}
+        - {color: "yellow", pattern: "error"}
+        - {color: "gray",   pattern: "unknown"}
 
   # ============================================================================
-  # SWITCH 1  |  SVG: cell-switch_1  |  JSON name: switch_1
+  # SWITCH 1
   # ============================================================================
   switch_1:
     dataRef: "A.switch_1.status"
@@ -103,16 +79,20 @@ cells:
       dataRef: "A.switch_1.status"
       gradientMode: "none"
       thresholdPatterns:
-        <<: *router-patterns
+        - {color: "red",    pattern: "down"}
+        - {color: "yellow", pattern: "error"}
+        - {color: "gray",   pattern: "unknown"}
 
     strokeColor:
       dataRef: "A.switch_1.status"
       gradientMode: "none"
       thresholdPatterns:
-        <<: *router-patterns
+        - {color: "red",    pattern: "down"}
+        - {color: "yellow", pattern: "error"}
+        - {color: "gray",   pattern: "unknown"}
 
   # ============================================================================
-  # ENLACE R1-R2  |  SVG: cell-link_r1_r2  |  JSON name: link_r1_r2
+  # ENLACE R1-R2
   # ============================================================================
   link_r1_r2:
     dataRef: "A.link_r1_r2.status"
@@ -121,16 +101,22 @@ cells:
       dataRef: "A.link_r1_r2.status"
       gradientMode: "none"
       thresholdPatterns:
-        <<: *link-patterns
+        - {color: "green",  pattern: "up"}
+        - {color: "red",    pattern: "down"}
+        - {color: "yellow", pattern: "error"}
+        - {color: "gray",   pattern: "unknown"}
 
     fillColor:
       dataRef: "A.link_r1_r2.status"
       gradientMode: "none"
       thresholdPatterns:
-        <<: *link-patterns
+        - {color: "green",  pattern: "up"}
+        - {color: "red",    pattern: "down"}
+        - {color: "yellow", pattern: "error"}
+        - {color: "gray",   pattern: "unknown"}
 
   # ============================================================================
-  # ENLACE R2-SW1  |  SVG: cell-link_r2_sw1  |  JSON name: link_r2_sw1
+  # ENLACE R2-SW1
   # ============================================================================
   link_r2_sw1:
     dataRef: "A.link_r2_sw1.status"
@@ -139,10 +125,16 @@ cells:
       dataRef: "A.link_r2_sw1.status"
       gradientMode: "none"
       thresholdPatterns:
-        <<: *link-patterns
+        - {color: "green",  pattern: "up"}
+        - {color: "red",    pattern: "down"}
+        - {color: "yellow", pattern: "error"}
+        - {color: "gray",   pattern: "unknown"}
 
     fillColor:
       dataRef: "A.link_r2_sw1.status"
       gradientMode: "none"
       thresholdPatterns:
-        <<: *link-patterns
+        - {color: "green",  pattern: "up"}
+        - {color: "red",    pattern: "down"}
+        - {color: "yellow", pattern: "error"}
+        - {color: "gray",   pattern: "unknown"}
